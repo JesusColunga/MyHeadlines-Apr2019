@@ -20,8 +20,7 @@ var q = queryURL + queryParams + "mexico&api-key=" + apiKey;
 function muestra (results) {
 	var r = $("#row1");
 	var sp, br;
-	console.log ("results", results);
-	console.log ("long", results.length);
+	
 	for (ct = 0; ct < results.length; ct ++) {
 		sp = $("<p>");
 		br = $("<br>");
@@ -40,22 +39,7 @@ $(document).ready(function() {
 		 method : "GET"}
 	).done ( 
 		function (data) {   // Se ejecuta después de traer la info del servidor
-			  //console.log (data);
 			  muestra ( data.response.results );
 		});
   
 }); // document.ready
-
-/*
-	$.ajax ( {url:queryURL, method: 'GET'} )
-		  .done ( function (response) {   // Se ejecuta después de traer la info del servidor
-			  console.log (response);
-			  $(".container").append (JSON.stringify (response) );
-		  });
----------------
-  $.ajax(
-	{url    : q,
-     method : "GET"}
-	).then(updatePage);
-
-*/
