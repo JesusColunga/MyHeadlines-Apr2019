@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>My Headlines</title>
+  <!-- Bootstrap CSS CDN  -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.min.css" />
+
+  <!-- Font Awesome CSS Icons (For cool glyphicons) -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" />
+
+  <!-- Style to fix the issue of text extending past card length -->
+  <style>
+    .card-body a {
+      word-break: break-all;
+    }
+
+    .articleHeadline {
+      line-height: 1.5;
+    }
+  </style>
+
+<style>
+    
+    h3   {color: black; font-size: 24px;}
+    h5   {color: black; font-size: 12px;}
+
+    h4   {color: black; size: 12px}
+    p    {color: black;  font-size: 18px;}
+    </style>
+</head>
+
+<body>
+
+  <!-- Main Bootstrap Search -->
+  <div class="container">
+
+    <!-- Jumbotron for Title -->
+    <div class="jumbotron" style="background-color: #20315A ; color: white;">
+      <h1 class="text-center">
+        <strong>
+          <i class="fa fa-newspaper-o"></i>My Headlines</strong>
+      </h1>
+    </div>
+
+    <!-- Row for Searching New York Times -->
+
+
+    <!-- This row will handle all of the retrieved articles -->
+    <div class="row">
+      <div class="col-sm-12">
+        <br>
+
+        <!-- This card will initially be made up of a card and wells for each of the articles retrieved -->
+        <div class="card">
+
+          <!-- card Heading for the retrieved articles box -->
+          <div class="card-header">
+            <strong>
+              <i class="fa fa-table"></i> Top Articles</strong>
+          </div>
+
+          <!-- This main card will hold each of the resulting articles -->
+          <div class="card-body" id="article-section">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer Region -->
+    <div class="row">
+      <div class="col-sm-12">
+
+        <!-- Line Break followed by closing -->
+        <hr>
+        <h5 class="text-center">
+          <small>Made with lots and lots of
+            <i class="fa fa-heart"></i>
+          </small>
+        </h5>
+
+      </div>
+    </div>
+
+  </div>
+
+  <!-- jQuery JS -->
+  
+  <script src="https://code.jquery.com/jquery.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/js/bootstrap.bundle.min.js"></script>
+  <!-- Code to the JavaScript File -->
+  <script src="nytcode.js"></script>
+  <script src="jason.js"></script>
+</body>
+
+</html>
