@@ -1,0 +1,32 @@
+/* style.css           */
+/* TheGuardian API     */
+/* 6/Apr/2019          */
+
+body {
+}
+
+
+/* - - - -  class  - - - - - */
+
+
+/* - - - -  id  - - - - - */
+
+
+/* - - -  Media Queries  - - - */
+@media only screen and (max-width: 980px) { 
+    h1 {
+        font-size:      40px;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    h1 {
+        font-size:      30px;
+    }
+}
+
+@media only screen and (max-width: 640px) {
+    h1 {
+        font-size:      20px;
+    }
+}
