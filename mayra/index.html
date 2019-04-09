@@ -28,7 +28,7 @@
                     <a class="nav-link" href="#">Category</a>
                 </li>
                 <li class="nav-item category">
-                    <a class="nav-link" href="#" >Category</a>
+                    <a class="nav-link" href="#">Category</a>
                 </li>
             </ul>
             <form class="form-inline my-2 my-lg-0">
@@ -42,6 +42,7 @@
     <div class="container">
         <div class="jumbotron bg-white text-center">
             <h1 class="news-category"> News Category</h1>
+            <h5 class="font-italic text-secondary">Section</h5>
         </div>
     </div>
 
@@ -54,10 +55,14 @@
             </div>
             <div class="card-body">
                 <div class="latest-news">
-                    <h3>News Title</h3>
-                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sit quam est voluptates explicabo
+                    <h3 class="nTitle">News Title</h3>
+                    <p class="nAutor font-italic"> by 123</p>
+                    <p class="nText">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sit quam est voluptates
+                        explicabo
                         fugiat sequi voluptate soluta! Maiores, soluta fugit sed omnis repudiandae eius officia
                         voluptatem natus fugiat unde rem.</p>
+                    <div class="text-center readMore"><a class="font-italic" href="#">Read More...</a></div>
+                    <hr>
 
                 </div>
             </div>
@@ -68,8 +73,8 @@
 
 
     <nav class="navbar fixed-bottom navbar-dark bg-dark text-center">
-            <a class="navbar-brand text-white" href="#top">Back to Top</a>
-          </nav>
+        <a class="navbar-brand text-white" href="#top">Back to Top</a>
+    </nav>
     <!--Enter JS and jQuery-->
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 </body>
@@ -91,4 +96,14 @@ Class: new-category
 
 For News Articles
 Class: latest-news
+
+For the News:
+Title
+    Class: nTitle 
+Author
+    Class: nAutor
+Text
+    Class: nText
+Read More
+    Class readMore (on div, not in anchor)
 -->
