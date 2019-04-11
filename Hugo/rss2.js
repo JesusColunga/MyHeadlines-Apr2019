@@ -46,8 +46,8 @@ function buildQueryURL() {
     // API doesn't have a "limit" parameter, so we have to do this ourselves
   
     // Log the NYTData to console, where it will show up as an object
-    console.log(NYTData);
-    console.log("------------------------------------");
+//    console.log(NYTData);
+  //  console.log("------------------------------------");
   
     // Loop through and build elements for the defined number of articles
     for (var i = 0; i < 5; i++) {
@@ -80,23 +80,26 @@ source2 = source2.replace("https://", "");
 source2 = source2.replace("http://", "");
 
 source2 = source2.split("/", 1)
-console.log(source2);
+//console.log(source2);
 //console.log(abstract);
 //console.log(urln);
 //console.log(byline);
 
-resultados.push({url: urln, headline: headline, abstract: abstract, author: byline, source: source2, section: section} );
+
 
 if (abstract.length > 1){
+
+  resultados.push({url: urln, headline: headline, abstract: abstract, author: byline, source: source2, section: section} );
   
-      var $articleListItem = $("<li class='list-group-item articleHeadline'>");
   
-      $articleListItem.append(
-  "<a href='" +urln + "'>" +
-          "<h3> " +
-          headline +
-          "</h3>" + "<p>" + abstract + "</p>" + "<h5><strong>" +source2+ "</Strong> " + byline + "--" + section  + "</h5>" + "</a> </li>"
-      );
+  //    var $articleListItem = $("<li class='list-group-item articleHeadline'>");
+  
+    //  $articleListItem.append(
+ // "<a href='" +urln + "'>" +
+   //       "<h3> " +
+     //     headline +
+    //      "</h3>" + "<p>" + abstract + "</p>" + "<h5><strong>" +source2+ "</Strong> " + byline + "--" + section  + "</h5>" + "</a> </li>"
+     // );
 
 
      
@@ -107,7 +110,7 @@ if (abstract.length > 1){
       // Append and log url
      
       // Append the article
-      $articleList.append($articleListItem);
+  //    $articleList.append($articleListItem);
   
 }
     }
