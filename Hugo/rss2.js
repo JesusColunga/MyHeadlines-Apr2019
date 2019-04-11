@@ -1,4 +1,10 @@
+
+function medio(rsslink){
+var resultados=[];
+
 /**
+ * 
+ 
  * pulls information from the form and build the query URL
  * @returns {string} URL for NYT API based on form inputs
  */
@@ -6,11 +12,11 @@ function buildQueryURL() {
     // queryURL is the url we'll use to query the API
     //var queryURL = "https://api.nytimes.com/svc/search/v2/articlesearch.json?";
   
-    var queryURL = "https://api.nytimes.com/svc/news/v3/content/all/all.json?";
+    var queryURL = "https://api.rss2json.com/v1/api.json?rss_url=" + rsslink + "&api_key=rdpmxqvrg636d7pvhkylsbx2a1w9jtwpzveorydm";
     // Begin building an object to contain our API call's query parameters
     // Set the API key
 
-    var queryParams = { "api-key": "0wlpVX7cIjFxYzCD6FmAS39d2lmBKh1O" };
+  //  var queryParams = { "api-key": "0wlpVX7cIjFxYzCD6FmAS39d2lmBKh1O" };
     
 
     //var queryParams = { "api-key": "R1a31F4tBjCUaM2ho8GtIFsrSdtXt30M" };
@@ -24,8 +30,12 @@ function buildQueryURL() {
   
   
     // Logging the URL so we have access to it for troubleshooting
-    return queryURL + $.param(queryParams);
+    //return queryURL + $.param(queryParams);
+  return queryURL 
+  
   }
+
+
   
   /**
    * takes API data (JSON/object) and turns it into elements on the page
@@ -43,7 +53,7 @@ function buildQueryURL() {
     for (var i = 0; i < 5; i++) {
       // Get specific article info for current index
       //var article = NYTData.response.docs[i];
-var article = NYTData.results[i];
+var article = NYTData.items[i];
   
       // Increase the articleCount (track article # - starting at 1)
       var articleCount = i + 1;
@@ -58,24 +68,34 @@ var article = NYTData.results[i];
       // If the article has a headline, log and append to $articleList
       //var headline = article.headline;
 var headline = article.title;
-console.log(headline);
-var abstract = article.abstract;
-var urln = article.url;
-var byline = article.byline;
-var section = article.section;
+//console.log(headline);
+var abstract ="";
+abstract = article.description;
+var urln = article.link;
+var byline = article.author;
+var section = NYTData.feed.title;
+var source2 = NYTData.feed.url;
 
-console.log(abstract);
-console.log(urln);
-console.log(byline);
+source2 = source2.replace("https://", "");
+source2 = source2.replace("http://", "");
 
+source2 = source2.split("/", 1)
+console.log(source2);
+//console.log(abstract);
+//console.log(urln);
+//console.log(byline);
 
+resultados.push({url: urln, headline: headline, abstract: abstract, author: byline, source: source2, section: section} );
+
+if (abstract.length > 1){
+  
       var $articleListItem = $("<li class='list-group-item articleHeadline'>");
   
       $articleListItem.append(
   "<a href='" +urln + "'>" +
           "<h3> " +
           headline +
-          "</h3>" + "<p>" + abstract + "</p>" + "<h5><strong> The New York Times </Strong> " + byline + "--" + section  + "</h5>" + "</a> </li>"
+          "</h3>" + "<p>" + abstract + "</p>" + "<h5><strong>" +source2+ "</Strong> " + byline + "--" + section  + "</h5>" + "</a> </li>"
       );
 
 
@@ -88,6 +108,8 @@ console.log(byline);
      
       // Append the article
       $articleList.append($articleListItem);
+  
+}
     }
   }
   
@@ -103,32 +125,20 @@ console.log(byline);
     method: "GET"
   }).then(updatePage);
 
-  // CLICK HANDLERS
-  // ==========================================================
-  
-  // .on("click") function associated with the Search Button
-  
-  /*
-  $("#run-search").on("click", function(event) {
-    // This line allows us to take advantage of the HTML "submit" property
-    // This way we can hit enter on the keyboard and it registers the search
-    // (in addition to clicks). Prevents the page from reloading on form submit.
-    event.preventDefault();
-  
-    // Empty the region associated with the articles
-    clear();
-  
-    // Build the query URL for the ajax request to the NYT API
-    var queryURL = buildQueryURL();
-  //var queryURL= "https://api.nytimes.com/svc/news/v3/content/all/all.json?api-key=0wlpVX7cIjFxYzCD6FmAS39d2lmBKh1O";
-    // Make the AJAX request to the API - GETs the JSON data at the queryURL.
-    // The data then gets passed as an argument to the updatePage function
-    $.ajax({
-      url: queryURL,
-      method: "GET"
-    }).then(updatePage);
-  });
-  
-  //  .on("click") function associated with the clear button
-  $("#clear-all").on("click", clear);
-  */
+  return resultados;
+}
+
+console.log(medio("https://www.cnbc.com/id/100003114/device/rss/rss.html"));
+console.log(medio("https://www.latimes.com/world/mexico-americas/rss2.0.xml"));
+
+console.log(medio("https://www.economist.com/international/rss.xml"));
+
+
+console.log(medio("http://rss.nytimes.com/services/xml/rss/nyt/HomePage.xml"));
+
+console.log(medio("https://api.foxsports.com/v1/rss?partnerKey=zBaFxRyGKCfxBagJG9b8pqLyndmvo7UU"));
+
+console.log(medio("http://feeds2.feedburner.com/time/topstories"));
+
+console.log(medio("https://www.dailyherald.com/rss/feed/?feed=news_top5"));
+
