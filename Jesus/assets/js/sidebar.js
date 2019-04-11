@@ -1,7 +1,3 @@
-/*  app.js               */
-/*  TheGuardian API      */
-/*  9/Apr/2019           */
-
 
 // GLOBAL VARIABLES
 // =======================================================================================
@@ -72,14 +68,16 @@ function muestra (results) {
 // FUNCTION CALLS (Execution)
 // =======================================================================================
 $(document).ready(function() {
+	$('#sidebarCollapse').on('click', function () {
+		$('#sidebar').toggleClass('active');
+		$(this).toggleClass('active');
+	});
 	
-  $.ajax(
+	$.ajax(
 		{url    : q,
 		 method : "GET"}
 	).done ( 
 		function (data) {   // Se ejecuta después de traer la info del servidor
-			sessionStorage.setItem('guardian', data.response.results);
 			muestra ( data.response.results );
 		});
-
 }); // document.ready
