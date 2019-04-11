@@ -14,8 +14,8 @@ var q = queryURL + queryParams + "mexico&api-key=" + apiKey;
 // FUNCTIONS (Definition)
 // =======================================================================================
 function processCard (indice, data) {
-	console.log ("data=", data);
-	var card, cardBody, p, img, p2, p3, p4, p5;
+	//console.log ("data=", data);
+	var card, cardBody, p, img, p2, p4, p5;
 	
 	card = $("<div>");
 	card.addClass ("card border-primary m-2");
@@ -26,27 +26,43 @@ function processCard (indice, data) {
 	
 	p = $("<div>");
 	p.addClass ("card-text");
-	p.text (indice + " - " + data.webTitle);
+	p.html ( "<b>"         +
+	         indice        + 
+	         " - "         +
+			 "</b>"        +
+			 "<a href='"   +
+			 data.webUrl   + 
+			 "'>"          +
+			 data.webTitle +
+			 "</a>"
+		   );
 	cardBody.append (p);
 	
 	p2 = $("<div>");
 	p2.addClass ("card-text");
-	p2.text ("Date: " + data.webPublicationDate);
+	p2.html ( "<b>"         +
+	          "Date: "      +
+			  "</b>"        +
+			  data.webPublicationDate
+			);
 	cardBody.append (p2);
-	
-	p3 = $("<div>");
-	p3.addClass ("card-text");
-	p3.text (data.webUrl);
-	cardBody.append (p3);
 	
 	p4 = $("<div>");
 	p4.addClass ("card-text");
-	p4.text ("Type: " + data.type);
+	p4.html ( "<b>"         +
+	          "Type: "      +
+			  "</b>"        +
+			  data.type
+			);
 	cardBody.append (p4);
 	
 	p5 = $("<div>");
 	p5.addClass ("card-text");
-	p5.text ("Section: " + data.sectionName);
+	p5.html ( "<b>"         +
+	          "Section: "   +
+			  "</b>"        +
+			  data.sectionName
+			);
 	cardBody.append (p5);
 	
 	img = $("<img>");
