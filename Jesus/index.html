@@ -33,33 +33,57 @@
                     <ul class="collapse list-unstyled" id="homeSubmenu">
                         <li>
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="" id="newSite1">
+                                <input class="form-check-input" type="checkbox" value="" id="newSite1" checked>
                                 <label class="form-check-label" for="defaultCheck1">
-                                    News Site 1
+                                    CNBC
                                 </label>
                             </div>
                         </li>
                         <li>
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="" id="newSite2">
+                                <input class="form-check-input" type="checkbox" value="" id="newSite2" checked>
                                 <label class="form-check-label" for="defaultCheck2">
-                                    News Site 2
+                                    Los Angeles Times
                                 </label>
                             </div>
                         </li>
                         <li>
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="" id="newSite3">
+                                <input class="form-check-input" type="checkbox" value="" id="newSite3" checked>
                                 <label class="form-check-label" for="defaultCheck3">
-                                    News Site 3
+                                    The Economist
                                 </label>
                             </div>
                         </li>
                         <li>
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="" id="newSite4">
+                                <input class="form-check-input" type="checkbox" value="" id="newSite4" checked>
                                 <label class="form-check-label" for="defaultCheck4">
-                                    News Site 4
+                                    The New York Times
+                                </label>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="newSite5" checked>
+                                <label class="form-check-label" for="defaultCheck5">
+                                    Fox Sports
+                                </label>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="newSite6" checked>
+                                <label class="form-check-label" for="defaultCheck6">
+                                    FeedBurner
+                                </label>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="newSite7" checked>
+                                <label class="form-check-label" for="defaultCheck7">
+                                    Daily Herald
                                 </label>
                             </div>
                         </li>
@@ -118,6 +142,43 @@
             </nav>
             <!--End Upper Nav Bar-->
             <!--Start Content-->
+			
+			<!--  //////////  Temporal  //////////  -->
+			<div class="container">
+				<div class="row">
+					<button type  = "button" 
+							class = "btn btn-outline-primary"
+							id    = "topNews"> 
+						click for Top News
+					</button>
+				</div>
+				
+				<div class="row">
+					<form>
+						<label for="movie-input"> or type the topic of your interest: </label>
+						<input type="text" id="movie-input">
+						<button type="submit" 
+						        class="btn btn-outline-success"
+								id="searchTopic"> 
+							Search 
+						</button>
+					</form>
+				</div>
+			</div>
+<!--
+    <form id="movie-form">
+      <label for="movie-input">Search for a movie</label>
+      <input type="text" id="movie-input"><br>
+
+      <!-- This button will trigger our AJAX call -- >
+      <input id="find-movie" type="submit" value="Movie Search">
+    </form>
+    ...
+    var movie = $("#movie-input").val();
+
+-->
+			<!--  //////////  ////////  //////////  -->
+			
             <div class="container-fluid news-container">
                 <div class="jumbotron bg-white text-center">
                     <h1 class="news-category"> News Category</h1>
