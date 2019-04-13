@@ -4,7 +4,7 @@
 var queryURL = "https://content.guardianapis.com";
 var queryParams = "/search?q=";
 var apiKey = "d29910de-c99f-41a2-936b-c52c08761666";
-var q = queryURL + queryParams + "mexico&api-key=" + apiKey;
+//var q = queryURL + queryParams + "mexico&api-key=" + apiKey;
 
 
 // OBJECTS
@@ -25,7 +25,7 @@ function processCard(indice, data) {
 	cardBody.addClass("card-body");
 
 	p = $("<div>");
-	p.addClass("card-text");
+	p.addClass("card-text newsHeader");
 	p.html("<b>" +
 		indice +
 		" - " +
@@ -39,7 +39,7 @@ function processCard(indice, data) {
 	cardBody.append(p);
 
 	p2 = $("<div>");
-	p2.addClass("card-text");
+	p2.addClass("card-text newsDate");
 	p2.html("<b>" +
 		"Date: " +
 		"</b>" +
@@ -48,7 +48,7 @@ function processCard(indice, data) {
 	cardBody.append(p2);
 
 	p3 = $("<div>");
-	p3.addClass("card-text");
+	p3.addClass("card-text newsType");
 	p3.html("<b>" +
 		"Type: " +
 		"</b>" +
@@ -57,7 +57,7 @@ function processCard(indice, data) {
 	cardBody.append(p3);
 
 	p4 = $("<div>");
-	p4.addClass("card-text");
+	p4.addClass("card-text newsSection");
 	p4.html("<b>" +
 		"Section: " +
 		"</b>" +
@@ -67,7 +67,7 @@ function processCard(indice, data) {
 
 	img = $("<img>");
 	img.attr("src", "");
-	img.addClass("card-img-top");
+	img.addClass("card-img-top newsImg");
 	img.attr("alt", "");
 
 	card.append(cardBody, img);
@@ -93,7 +93,7 @@ function processCard2(indice, data) {
 	cardBody.addClass("card-body");
 
 	p1 = $("<div>");
-	p1.addClass("card-text");
+	p1.addClass("card-text newsHeader");
 	p1.html("<b>" +
 		indice +
 		" - " +
@@ -107,16 +107,14 @@ function processCard2(indice, data) {
 	cardBody.append(p1);
 
 	p2 = $("<div>");
-	p2.addClass("card-text");
-	p2.html("<b>" +
-		"Author: " +
-		"</b>" +
+	p2.addClass("card-text newsAuthor");
+	p2.html(
 		data.author
 	);
 	cardBody.append(p2);
 
 	p3 = $("<div>");
-	p3.addClass("card-text");
+	p3.addClass("card-text newsSource");
 	p3.html("<b>" +
 		"Source: " +
 		"</b>" +
@@ -125,7 +123,7 @@ function processCard2(indice, data) {
 	cardBody.append(p3);
 
 	p4 = $("<div>");
-	p4.addClass("card-text");
+	p4.addClass("card-text newsSection");
 	p4.html("<b>" +
 		"Section: " +
 		"</b>" +
@@ -204,7 +202,7 @@ function selectSources() {           // "Top News" button click
 	    !$("#newSite5").prop("checked") &&
 	    !$("#newSite6").prop("checked") &&
 	    !$("#newSite7").prop("checked") 
-	   ) { alert ( "Please select at least one News Source" ); }
+	   ) { swal ( "Wait!", "Please select at least one News Source", "error" ); }
     else {
 		$("#row1").empty ();
 		if ($("#newSite1").prop("checked")) {
@@ -231,16 +229,32 @@ function selectSources() {           // "Top News" button click
 	};
 };
 
+function createQuery (topic) {
+	return queryURL    + 
+	       queryParams +
+		   topic       +
+	       "&api-key=" + 
+		   apiKey;
+};
+
 function processTopic() {            // "Search" button click
-	$.ajax(
-		{
-			url: q,
-			method: "GET"
-		}
-	).done(
-		function (data) {   
-			muestra(data.response.results);
-		});
+	var topic = $("#topicInput").val ().trim ();
+	$("#topicInput").val ( "" );
+console.log ( "q=", createQuery (topic) );
+	if (topic === "") {
+		swal ( "Wait!", "Please write a topic to search", "error" );
+	}
+	else {
+		$.ajax(
+			{
+				url: createQuery (topic),
+				method: "GET"
+			}
+		).done(
+			function (data) {   
+				muestra(data.response.results);
+			});
+	};
 };
 
 function toggleMenu() {
@@ -263,7 +277,7 @@ $(document).ready(function () {
 	);
 
 	$("#searchTopic").on("click",
-		function () {
+		function (event) {
 			event.preventDefault();
 			processTopic();            // "Search" button click
 		}
