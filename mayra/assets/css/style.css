@@ -159,3 +159,37 @@ ul ul a {
     margin-top: 10px;
 }
 
+.newsHeader a {
+    font-size: 1.05rem;
+    font-weight: bold;
+}
+
+.newsHeader a:hover {
+    color: #5c5c5c;
+    background: #FFFFFF;
+    text-decoration: underline;
+    /*text-shadow: -2px 0px 2px rgba(150, 150, 150, 1);*/
+    /*text-shadow: 2px 2px 0 #bcbcbc, 4px 4px 0 #9c9c9c;*/
+}
+
+.newsSection{
+    font-style: italic;
+    color: rgba(150, 150, 150, 1);
+    font-size: 0.8rem;
+}
+
+.jumbotron{
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.newsAuthor{
+    font-size: 0.7rem;
+    font-style: italic;
+    text-align: right;
+}
+
+.newsSource{
+    color: rgba(150, 150, 150, 1);
+    font-size: 0.8rem;
+}

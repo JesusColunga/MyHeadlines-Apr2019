@@ -25,7 +25,7 @@ function processCard(indice, data) {
 	cardBody.addClass("card-body");
 
 	p = $("<div>");
-	p.addClass("card-text");
+	p.addClass("card-text newsHeader");
 	p.html("<b>" +
 		indice +
 		" - " +
@@ -39,7 +39,7 @@ function processCard(indice, data) {
 	cardBody.append(p);
 
 	p2 = $("<div>");
-	p2.addClass("card-text");
+	p2.addClass("card-text newsDate");
 	p2.html("<b>" +
 		"Date: " +
 		"</b>" +
@@ -48,7 +48,7 @@ function processCard(indice, data) {
 	cardBody.append(p2);
 
 	p3 = $("<div>");
-	p3.addClass("card-text");
+	p3.addClass("card-text newsType");
 	p3.html("<b>" +
 		"Type: " +
 		"</b>" +
@@ -57,7 +57,7 @@ function processCard(indice, data) {
 	cardBody.append(p3);
 
 	p4 = $("<div>");
-	p4.addClass("card-text");
+	p4.addClass("card-text newsSection");
 	p4.html("<b>" +
 		"Section: " +
 		"</b>" +
@@ -67,7 +67,7 @@ function processCard(indice, data) {
 
 	img = $("<img>");
 	img.attr("src", "");
-	img.addClass("card-img-top");
+	img.addClass("card-img-top newsImg");
 	img.attr("alt", "");
 
 	card.append(cardBody, img);
@@ -75,7 +75,7 @@ function processCard(indice, data) {
 };
 
 function muestra(results) {
-	alert("muestra");
+	$("#row1").empty ();
 	for (ct = 0; ct < results.length; ct++) {
 		processCard(ct + 1, results[ct]);
 	};
@@ -93,7 +93,7 @@ function processCard2(indice, data) {
 	cardBody.addClass("card-body");
 
 	p1 = $("<div>");
-	p1.addClass("card-text");
+	p1.addClass("card-text newsHeader");
 	p1.html("<b>" +
 		indice +
 		" - " +
@@ -107,16 +107,14 @@ function processCard2(indice, data) {
 	cardBody.append(p1);
 
 	p2 = $("<div>");
-	p2.addClass("card-text");
-	p2.html("<b>" +
-		"Author: " +
-		"</b>" +
+	p2.addClass("card-text newsAuthor");
+	p2.html(
 		data.author
 	);
 	cardBody.append(p2);
 
 	p3 = $("<div>");
-	p3.addClass("card-text");
+	p3.addClass("card-text newsSource");
 	p3.html("<b>" +
 		"Source: " +
 		"</b>" +
@@ -125,7 +123,7 @@ function processCard2(indice, data) {
 	cardBody.append(p3);
 
 	p4 = $("<div>");
-	p4.addClass("card-text");
+	p4.addClass("card-text newsSection");
 	p4.html("<b>" +
 		"Section: " +
 		"</b>" +
@@ -196,40 +194,49 @@ function medio(rsslink) {
 /* ==============================================================
    ==========          Top News Code -  End           =========== */
 
-function selectSources() {
-	if ($("#newSite1").prop("checked")) {
-		medio("https://www.cnbc.com/id/100003114/device/rss/rss.html");
-	};
-	if ($("#newSite2").prop("checked")) {
-		medio("https://www.latimes.com/world/mexico-americas/rss2.0.xml");
-	};
-	if ($("#newSite3").prop("checked")) {
-		medio("https://www.economist.com/international/rss.xml");
-	};
-	if ($("#newSite4").prop("checked")) {
-		medio("http://rss.nytimes.com/services/xml/rss/nyt/HomePage.xml");
-	};
-	if ($("#newSite5").prop("checked")) {
-		medio("https://api.foxsports.com/v1/rss?partnerKey=zBaFxRyGKCfxBagJG9b8pqLyndmvo7UU");
-	};
-	if ($("#newSite6").prop("checked")) {
-		medio("http://feeds2.feedburner.com/time/topstories");
-	};
-	if ($("#newSite7").prop("checked")) {
-		medio("https://www.dailyherald.com/rss/feed/?feed=news_top4");
+function selectSources() {           // "Top News" button click
+	if (!$("#newSite1").prop("checked") &&
+	    !$("#newSite2").prop("checked") &&
+	    !$("#newSite3").prop("checked") &&
+	    !$("#newSite4").prop("checked") &&
+	    !$("#newSite5").prop("checked") &&
+	    !$("#newSite6").prop("checked") &&
+	    !$("#newSite7").prop("checked") 
+	   ) { alert ( "Please select at least one News Source" ); }
+    else {
+		$("#row1").empty ();
+		if ($("#newSite1").prop("checked")) {
+			medio("https://www.cnbc.com/id/100003114/device/rss/rss.html");
+		};
+		if ($("#newSite2").prop("checked")) {
+			medio("https://www.latimes.com/world/mexico-americas/rss2.0.xml");
+		};
+		if ($("#newSite3").prop("checked")) {
+			medio("https://www.economist.com/international/rss.xml");
+		};
+		if ($("#newSite4").prop("checked")) {
+			medio("http://rss.nytimes.com/services/xml/rss/nyt/HomePage.xml");
+		};
+		if ($("#newSite5").prop("checked")) {
+			medio("https://api.foxsports.com/v1/rss?partnerKey=zBaFxRyGKCfxBagJG9b8pqLyndmvo7UU");
+		};
+		if ($("#newSite6").prop("checked")) {
+			medio("http://feeds2.feedburner.com/time/topstories");
+		};
+		if ($("#newSite7").prop("checked")) {
+			medio("https://www.dailyherald.com/rss/feed/?feed=news_top4");
+		};
 	};
 };
 
-function processTopic() {
-	console.log("(processTopic)q=" + q);
+function processTopic() {            // "Search" button click
 	$.ajax(
 		{
 			url: q,
 			method: "GET"
 		}
 	).done(
-		function (data) {   // Se ejecuta después de traer la info del servidor
-			console.log("(processTopic) ya trajo info");
+		function (data) {   
 			muestra(data.response.results);
 		});
 };
@@ -246,27 +253,17 @@ function toggleMenu() {
 $(document).ready(function () {
 	toggleMenu();
 	$(".news-sections").hide()
+	
 	$("#topNews").on("click",
 		function () {
-			selectSources();
+			selectSources();           // "Top News" button click
 		}
 	);
 
 	$("#searchTopic").on("click",
-		function () {
+		function (event) {
 			event.preventDefault();
-			processTopic();
+			processTopic();            // "Search" button click
 		}
 	);
-
-	/*	
-		$.ajax(
-			{url    : q,
-			 method : "GET"}
-		).done ( 
-			function (data) {   // Se ejecuta después de traer la info del servidor
-					alert ("(processTopic) ya trajo info");
-				muestra ( data.response.results );
-			});
-	*/
 }); // document.ready
