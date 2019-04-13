@@ -28,8 +28,7 @@
                 <p>News Site in progress</p>
                 <li class="active">
                     <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false"
-                        class="news-sites dropdown-toggle bg-dark">News
-                        Sites</a>
+                        class="news-sites dropdown-toggle bg-dark">Top News</a>
                     <ul class="collapse list-unstyled" id="homeSubmenu">
                         <li>
                             <div class="form-check">
@@ -145,7 +144,7 @@
                     </button>
 
                     <form class="form-inline my-2 my-lg-0">
-                        <input class="form-control mr-sm-2" type="search" placeholder="Topic to search" id="movie-input" aria-label="Search">
+                        <input class="form-control mr-sm-2" type="search" placeholder="Topic to search" id="topicInput" aria-label="Search">
                         <button class="btn btn-outline-success my-2 my-sm-0" type="submit" id="searchTopic">Search</button>
                     </form>
                 </div>
@@ -162,17 +161,6 @@
 
                 <!--End Header-->
                 <!--Main Content-->
-                <!--
-                <div class="card">
-                    <div class="card-header bg-white">
-                        <div class="card-title font-weight-bold"> Latest News</div>
-                    </div>
-                    <div class="card-body">
-                        <div class="latest-news" id="row1">
-                        </div>
-                    </div>
-                </div>
--->
 
                 <div class="row" id="row1">
                     <!-- Row 1:  -->
@@ -195,6 +183,9 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"
         integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm"
         crossorigin="anonymous"></script>
+		
+	<!-- Alerts library -->
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
     <script type="text/javascript" src="assets/js/sidebar.js"></script>
 </body>
@@ -209,10 +200,10 @@ For categories in navbar
 Class: categories
 
 For search box
-Class: type-search
+ID: topicInput
 
 For search button (submit button):
-class: submit-search
+ID:search-topic
 
 News Category Header Title
 Class: new-category
