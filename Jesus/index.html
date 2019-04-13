@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-    <title>My  Headlines</title>
+    <title>My Headlines</title>
 
     <!-- Bootstrap CSS CDN -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
@@ -28,7 +28,7 @@
                 <p>News Site in progress</p>
                 <li class="active">
                     <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false"
-                        class="dropdown-toggle bg-dark">News
+                        class="news-sites dropdown-toggle bg-dark">News
                         Sites</a>
                     <ul class="collapse list-unstyled" id="homeSubmenu">
                         <li>
@@ -87,11 +87,16 @@
                                 </label>
                             </div>
                         </li>
+                        <li>
+                            <button type="button" class="btn btn-outline-primary" id="topNews">
+                                Top News
+                            </button>
+                        </li>
                     </ul>
                 </li>
                 <li>
                     <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false"
-                        class="dropdown-toggle">Sections</a>
+                        class="news-sections dropdown-toggle bg-dark">Sections</a>
                     <ul class="collapse list-unstyled" id="pageSubmenu">
                         <li>
                             <div class="form-check">
@@ -138,47 +143,16 @@
                         <span></span>
                         <span></span>
                     </button>
+
+                    <form class="form-inline my-2 my-lg-0">
+                        <input class="form-control mr-sm-2" type="search" placeholder="Topic to search" id="movie-input" aria-label="Search">
+                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit" id="searchTopic">Search</button>
+                    </form>
                 </div>
             </nav>
             <!--End Upper Nav Bar-->
             <!--Start Content-->
-			
-			<!--  //////////  Temporal  //////////  -->
-			<div class="container">
-				<div class="row">
-					<button type  = "button" 
-							class = "btn btn-outline-primary"
-							id    = "topNews"> 
-						click for Top News
-					</button>
-				</div>
-				
-				<div class="row">
-					<form>
-						<label for="movie-input"> or type the topic of your interest: </label>
-						<input type="text" id="movie-input">
-						<button type="submit" 
-						        class="btn btn-outline-success"
-								id="searchTopic"> 
-							Search 
-						</button>
-					</form>
-				</div>
-			</div>
-<!--
-    <form id="movie-form">
-      <label for="movie-input">Search for a movie</label>
-      <input type="text" id="movie-input"><br>
 
-      <!-- This button will trigger our AJAX call -- >
-      <input id="find-movie" type="submit" value="Movie Search">
-    </form>
-    ...
-    var movie = $("#movie-input").val();
-
--->
-			<!--  //////////  ////////  //////////  -->
-			
             <div class="container-fluid news-container">
                 <div class="jumbotron bg-white text-center">
                     <h1 class="news-category"> News Category</h1>
@@ -188,7 +162,7 @@
 
                 <!--End Header-->
                 <!--Main Content-->
-<!--
+                <!--
                 <div class="card">
                     <div class="card-header bg-white">
                         <div class="card-title font-weight-bold"> Latest News</div>
@@ -200,8 +174,9 @@
                 </div>
 -->
 
-        <div class="row" id="row1">           <!-- Row 1:  -->
-        </div>
+                <div class="row" id="row1">
+                    <!-- Row 1:  -->
+                </div>
 
 
             </div>
