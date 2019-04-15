@@ -30,20 +30,18 @@ function processCard(indice, data) {
 		indice +
 		" - " +
 		"</b>" +
-		"<a href='" +
+		"<a data-toggle='modal' class='access' href='" +
 		data.webUrl +
-		"'>" +
+		"'  data-target='#myModal'>" +
 		data.webTitle +
 		"</a>"
 	);
 	cardBody.append(p);
 
 	p2 = $("<div>");
-	p2.addClass("card-text newsDate");
-	p2.html("<b>" +
-		"Date: " +
-		"</b>" +
-		data.webPublicationDate
+	p2.addClass("card-text newsSection");
+	p2.html(
+		data.sectionName.toUpperCase()
 	);
 	cardBody.append(p2);
 
@@ -57,13 +55,14 @@ function processCard(indice, data) {
 	cardBody.append(p3);
 
 	p4 = $("<div>");
-	p4.addClass("card-text newsSection");
+	p4.addClass("card-text newsDate");
 	p4.html("<b>" +
-		"Section: " +
+		"Date: " +
 		"</b>" +
-		data.sectionName
+		data.webPublicationDate
 	);
 	cardBody.append(p4);
+	
 
 	img = $("<img>");
 	img.attr("src", "");
@@ -98,9 +97,9 @@ function processCard2(indice, data) {
 		indice +
 		" - " +
 		"</b>" +
-		"<a href='" +
+		"<a data-toggle='modal' class='access' href='" +
 		data.url +
-		"'>" +
+		"' data-target='#myModal'>" +
 		data.headline +
 		"</a>"
 	);
@@ -114,22 +113,22 @@ function processCard2(indice, data) {
 	cardBody.append(p2);
 
 	p3 = $("<div>");
-	p3.addClass("card-text newsSource");
-	p3.html("<b>" +
-		"Source: " +
-		"</b>" +
-		data.source
+	p3.addClass("card-text newsSection2");
+	p3.html(
+		data.section.toUpperCase()
 	);
 	cardBody.append(p3);
 
 	p4 = $("<div>");
-	p4.addClass("card-text newsSection");
+	p4.addClass("card-text newsSource");
 	p4.html("<b>" +
-		"Section: " +
+		"Source: " +
 		"</b>" +
-		data.section
+		data.source
 	);
 	cardBody.append(p4);
+
+	
 
 	card.append(cardBody);
 	$("#row1").append(card);
@@ -202,7 +201,7 @@ function selectSources() {           // "Top News" button click
 	    !$("#newSite5").prop("checked") &&
 	    !$("#newSite6").prop("checked") &&
 	    !$("#newSite7").prop("checked") 
-	   ) { alert ( "Please select at least one News Source" ); }
+	   ) { swal ( "Wait!", "Please select at least one News Source", "error" ); }
     else {
 		$("#row1").empty ();
 		if ($("#newSite1").prop("checked")) {
@@ -252,11 +251,12 @@ function toggleMenu() {
 // =====================================================================================
 $(document).ready(function () {
 	toggleMenu();
-	$(".news-sections").hide()
+	$(".news-sections").hide();
 	
 	$("#topNews").on("click",
 		function () {
 			selectSources();           // "Top News" button click
+			
 		}
 	);
 
@@ -266,4 +266,13 @@ $(document).ready(function () {
 			processTopic();            // "Search" button click
 		}
 	);
+//To open URL on iframe
+//Cannot make this work 
+	$('a.access').on('click', function(e) {
+		e.preventDefault();
+		var url = $(this).attr('href');
+		console.log(url);
+		$(".modal-body").html('<iframe width="100%" height="100%" frameborder="0" scrolling="yes" allowtransparency="true" src="'+url+'"></iframe>');
+});
+	
 }); // document.ready

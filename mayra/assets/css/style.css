@@ -193,3 +193,18 @@ ul ul a {
     color: rgba(150, 150, 150, 1);
     font-size: 0.8rem;
 }
+
+/*For Modal Popup*/
+.modal-dialog {
+    max-height: calc(100vh - 200px);
+    overflow-y: auto;
+}
+
+iframe{
+    height: calc(100vh - 200px);
+}
+
+.modal-body{
+    max-height: calc(100vh - 200px);
+    height: -webkit-fill-available;
+}
