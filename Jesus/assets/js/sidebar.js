@@ -4,16 +4,42 @@
 var queryURL = "https://content.guardianapis.com";
 var queryParams = "/search?q=";
 var apiKey = "d29910de-c99f-41a2-936b-c52c08761666";
-//var q = queryURL + queryParams + "mexico&api-key=" + apiKey;
 
 
 // OBJECTS
 // =====================================================================================
+var sourcesArr = [
+	"",                                  // Index 0 - Empty
+	{ image : "CNBC50px.png",            // Index 1 - CNBC
+	  url   : "https://www.cnbc.com/id/100003114/device/rss/rss.html"
+	},
+	{ image : "LATimes50px.png",         // Index 2 - Los Angeles Times
+	  url   : "https://www.latimes.com/world/mexico-americas/rss2.0.xml"
+	},
+	{ image : "TheEconomist50px.png",    // Index 3 - The Economist
+	  url   : "https://www.economist.com/international/rss.xml"
+	},
+	{ image : "NYT50px.png",             // Index 4 - The New York Times
+	  url   : "http://rss.nytimes.com/services/xml/rss/nyt/HomePage.xml"
+	},
+	{ image : "FoxSports50px.png",       // Index 5 - Fox Sports
+	  url   : "https://api.foxsports.com/v1/rss?partnerKey=zBaFxRyGKCfxBagJG9b8pqLyndmvo7UU"
+	},
+	{ image : "FeedBurner50px.png",      // Index 6 - FeedBurner
+	  url   : "http://feeds2.feedburner.com/time/topstories"
+	},
+	{ image : "DailyHerald50px.png",     // Index 7 - Daily Herald
+	  url   : "https://www.dailyherald.com/rss/feed/?feed=news_top4"
+	},
+	{ image : "theguardian50px.png",     // Index 8 - The Guardian
+	  url   : ""
+	}
+];
 
 
 // FUNCTIONS (Definition)
 // =====================================================================================
-function processCard(indice, data) {
+function processCard(indice, data) {            // Search Topic
 	//console.log ("data=", data);
 	var card, cardBody, p, img, p2, p3, p4;
 
@@ -74,7 +100,7 @@ function processCard(indice, data) {
 	$("#row1").append(card);
 };
 
-function muestra(results) {
+function muestra(results) {            // Search Topic
 	$("#row1").empty ();
 	for (ct = 0; ct < results.length; ct++) {
 		processCard(ct + 1, results[ct]);
@@ -82,67 +108,98 @@ function muestra(results) {
 };
 
 //-----------------------------
-function processCard2(indice, data) {
-	var card, cardBody, p1, p2, p3, p4;
-
+function processCard2(data, index) {		 // "Top News"
+	var card, cardBody, cardText, cardFoot, r, col1, col2, p2, p3, p4, img;
+	// --------  Card 
 	card = $("<div>");
 	card.addClass("card border-primary m-2");
 	card.attr("style", "width:18rem");
-
+	// --------  Card Body
 	cardBody = $("<div>");
 	cardBody.addClass("card-body");
-
-	p1 = $("<div>");
-	p1.addClass("card-text newsHeader");
-	p1.html("<b>" +
-		indice +
-		" - " +
-		"</b>" +
+	// --------  Card Text
+	cardText = $("<div>");   // News text
+	cardText.addClass("card-text newsHeader");
+	cardText.html(
 		"<a href='" +
 		data.url +
 		"'>" +
 		data.headline +
 		"</a>"
 	);
-	cardBody.append(p1);
-
-	p2 = $("<div>");
-	p2.addClass("card-text newsAuthor");
-	p2.html(
-		data.author
-	);
-	cardBody.append(p2);
-
-	p3 = $("<div>");
-	p3.addClass("card-text newsSource");
-	p3.html("<b>" +
-		"Source: " +
-		"</b>" +
-		data.source
-	);
-	cardBody.append(p3);
-
-	p4 = $("<div>");
-	p4.addClass("card-text newsSection");
-	p4.html("<b>" +
-		"Section: " +
-		"</b>" +
-		data.section
-	);
-	cardBody.append(p4);
-
+	cardBody.append(cardText);
 	card.append(cardBody);
+	// =======================
+	
+	// --------  Card Footer
+	cardFoot = $("<div>");   // Footer
+	cardFoot.addClass ("card-footer");
+	// --------  Row
+	r = $("<div>");
+	r.addClass("row");
+	// --------  Col 1
+	col1 = $("<div>");
+	col1.addClass("col-3");
+	// en este va la imagen
+	    // ---
+	img = $("<img>");
+	img.attr ( "src", "assets/img/" + sourcesArr [index].image );
+	col1.append (img);
+	// --------  Col 2
+	col2 = $("<div>");
+	col2.addClass("col-9");
+	    // ---
+	if (data.author !== "") {
+		p2 = $("<div>");         // Author
+		p2.addClass("card-text newsAuthor");
+		p2.html("<b>" +
+			"Author: " +
+			"</b>" +
+			data.author
+		);
+		col2.append(p2);
+	}
+	    // ---
+	if (data.source !== "") {
+		p3 = $("<div>");         // Source
+		p3.addClass("card-text newsSource");
+		p3.html("<b>" +
+			"Source: " +
+			"</b>" +
+			data.source
+		);
+		col2.append(p3);
+	}
+	    // ---
+	if (data.section !== "") {
+		p4 = $("<div>");         // Section
+		p4.addClass("card-text newsSection");
+		p4.html("<b>" +
+			"Section: " +
+			"</b>" +
+			data.section
+		);
+		col2.append(p4);
+	}
+	    // ---
+	// --------  
+	r.append (col1, col2);
+	cardFoot.append (r);
+	card.append(cardFoot);
 	$("#row1").append(card);
+	// =======================
 };
 
-function showTopNewsResults(results) {
+function showTopNewsResults(results, index) {
 	for (ct = 0; ct < results.length; ct++) {
-		processCard2(ct + 1, results[ct]);
+		processCard2(results[ct], index);
 	};
 };
 /* ==============================================================
    ==========          Top News Code - Start          =========== */
-function medio(rsslink) {
+//function medio(rsslink) {
+function medio( index ) {
+	var rsslink = sourcesArr [index].url;
 	var resultados = [];
 
 
@@ -182,7 +239,7 @@ function medio(rsslink) {
 			}
 		}
 
-		showTopNewsResults(resultados);
+		showTopNewsResults(resultados, index);
 	}
 
 	$.ajax({
@@ -205,26 +262,10 @@ function selectSources() {           // "Top News" button click
 	   ) { swal ( "Wait!", "Please select at least one News Source", "error" ); }
     else {
 		$("#row1").empty ();
-		if ($("#newSite1").prop("checked")) {
-			medio("https://www.cnbc.com/id/100003114/device/rss/rss.html");
-		};
-		if ($("#newSite2").prop("checked")) {
-			medio("https://www.latimes.com/world/mexico-americas/rss2.0.xml");
-		};
-		if ($("#newSite3").prop("checked")) {
-			medio("https://www.economist.com/international/rss.xml");
-		};
-		if ($("#newSite4").prop("checked")) {
-			medio("http://rss.nytimes.com/services/xml/rss/nyt/HomePage.xml");
-		};
-		if ($("#newSite5").prop("checked")) {
-			medio("https://api.foxsports.com/v1/rss?partnerKey=zBaFxRyGKCfxBagJG9b8pqLyndmvo7UU");
-		};
-		if ($("#newSite6").prop("checked")) {
-			medio("http://feeds2.feedburner.com/time/topstories");
-		};
-		if ($("#newSite7").prop("checked")) {
-			medio("https://www.dailyherald.com/rss/feed/?feed=news_top4");
+		for (ct = 1; ct < 8; ct++) {
+			if ($("#newSite" + ct).prop("checked")) {
+				medio( ct );
+			};
 		};
 	};
 };
@@ -283,3 +324,4 @@ $(document).ready(function () {
 		}
 	);
 }); // document.ready
+
