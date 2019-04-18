@@ -39,160 +39,19 @@ var sourcesArr = [
 
 // FUNCTIONS (Definition)
 // =====================================================================================
-function processCard(indice, data) {            // Search Topic
-	//console.log ("data=", data);
-	var card, cardBody, p, img, p2, p3, p4;
-
-	card = $("<div>");
-	card.addClass("card border-success m-2");
-	card.attr("style", "width:18rem");
-
-	cardBody = $("<div>");
-	cardBody.addClass("card-body");
-
-	p = $("<div>");
-	p.addClass("card-text newsHeader");
-	p.html("<b>" +
-		indice +
-		" - " +
-		"</b>" +
-		"<a href='" +
-		data.webUrl +
-		"'>" +
-		data.webTitle +
-		"</a>"
-	);
-	cardBody.append(p);
-
-	p2 = $("<div>");
-	p2.addClass("card-text newsDate");
-	p2.html("<b>" +
-		"Date: " +
-		"</b>" +
-		data.webPublicationDate
-	);
-	cardBody.append(p2);
-
-	p3 = $("<div>");
-	p3.addClass("card-text newsType");
-	p3.html("<b>" +
-		"Type: " +
-		"</b>" +
-		data.type
-	);
-	cardBody.append(p3);
-
-	p4 = $("<div>");
-	p4.addClass("card-text newsSection");
-	p4.html("<b>" +
-		"Section: " +
-		"</b>" +
-		data.sectionName
-	);
-	cardBody.append(p4);
-
-	img = $("<img>");
-	img.attr("src", "");
-	img.addClass("card-img-top newsImg");
-	img.attr("alt", "");
-
-	card.append(cardBody, img);
-	$("#row1").append(card);
-};
 
 function muestra(results) {            // Search Topic
 	$("#row1").empty ();
 	for (ct = 0; ct < results.length; ct++) {
-		processCard(ct + 1, results[ct]);
+		processCardSearchTopic (results[ct]);
 	};
 };
 
 //-----------------------------
-function processCard2(data, index) {		 // "Top News"
-	var card, cardBody, cardText, cardFoot, r, col1, col2, p2, p3, p4, img;
-	// --------  Card 
-	card = $("<div>");
-	card.addClass("card border-primary m-2");
-	card.attr("style", "width:18rem");
-	// --------  Card Body
-	cardBody = $("<div>");
-	cardBody.addClass("card-body");
-	// --------  Card Text
-	cardText = $("<div>");   // News text
-	cardText.addClass("card-text newsHeader");
-	cardText.html(
-		"<a href='" +
-		data.url +
-		"'>" +
-		data.headline +
-		"</a>"
-	);
-	cardBody.append(cardText);
-	card.append(cardBody);
-	// =======================
-	
-	// --------  Card Footer
-	cardFoot = $("<div>");   // Footer
-	cardFoot.addClass ("card-footer");
-	// --------  Row
-	r = $("<div>");
-	r.addClass("row");
-	// --------  Col 1
-	col1 = $("<div>");
-	col1.addClass("col-3");
-	// en este va la imagen
-	    // ---
-	img = $("<img>");
-	img.attr ( "src", "assets/img/" + sourcesArr [index].image );
-	col1.append (img);
-	// --------  Col 2
-	col2 = $("<div>");
-	col2.addClass("col-9");
-	    // ---
-	if (data.author !== "") {
-		p2 = $("<div>");         // Author
-		p2.addClass("card-text newsAuthor");
-		p2.html("<b>" +
-			"Author: " +
-			"</b>" +
-			data.author
-		);
-		col2.append(p2);
-	}
-	    // ---
-	if (data.source !== "") {
-		p3 = $("<div>");         // Source
-		p3.addClass("card-text newsSource");
-		p3.html("<b>" +
-			"Source: " +
-			"</b>" +
-			data.source
-		);
-		col2.append(p3);
-	}
-	    // ---
-	if (data.section !== "") {
-		p4 = $("<div>");         // Section
-		p4.addClass("card-text newsSection");
-		p4.html("<b>" +
-			"Section: " +
-			"</b>" +
-			data.section
-		);
-		col2.append(p4);
-	}
-	    // ---
-	// --------  
-	r.append (col1, col2);
-	cardFoot.append (r);
-	card.append(cardFoot);
-	$("#row1").append(card);
-	// =======================
-};
 
 function showTopNewsResults(results, index) {
 	for (ct = 0; ct < results.length; ct++) {
-		processCard2(results[ct], index);
+		processCardTopNews (results[ct], index);
 	};
 };
 /* ==============================================================
@@ -248,8 +107,8 @@ function medio( index ) {
 	}).then(updatePage);
 
 }
-/* ==============================================================
-   ==========          Top News Code -  End           =========== */
+/* ==========          Top News Code -  End           =========== 
+   ============================================================== */
 
 function selectSources() {           // "Top News" button click
 	if (!$("#newSite1").prop("checked") &&
@@ -280,15 +139,12 @@ function createQuery (topic) {
 
 function processTopic() {            // "Search" button click
 	var topic = $("#topicInput").val ().trim ();
-	$("#topicInput").val ( "" );
-console.log ( "q=", createQuery (topic) );
 	if (topic === "") {
 		swal ( "Wait!", "Please write a topic to search", "error" );
 	}
 	else {
 		$.ajax(
-			{
-				url: createQuery (topic),
+			{	url: createQuery (topic),
 				method: "GET"
 			}
 		).done(
@@ -313,15 +169,33 @@ $(document).ready(function () {
 	
 	$("#topNews").on("click",
 		function () {
-			selectSources();           // "Top News" button click
+			selectSources();                     // "Top News" button click
 		}
 	);
 
 	$("#searchTopic").on("click",
 		function (event) {
 			event.preventDefault();
-			processTopic();            // "Search" button click
+			processTopic();                      // "Search" button click
 		}
 	);
+	
+//------------------------------------------
+	$("#row1").on("click" , ".border-primary",   // "Top News" card click
+		function () {
+			console.log ("Top News card click");
+			console.log ( $(this).attr ("data-url") );
+		}
+	);
+
+	$("#row1").on("click" , ".border-success",   // "Search Topic" card click
+		function () {
+			//event.preventDefault();
+			console.log ("Search Topic card click");
+			console.log ( $(this).attr ("data-url") );
+		}
+	);
+//------------------------------------------
+
 }); // document.ready
 

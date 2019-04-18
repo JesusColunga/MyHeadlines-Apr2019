@@ -16,7 +16,24 @@
 </head>
 
 <body>
+    <!--Modal-->
+    <div class="modal fade bd-example-modal-lg" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-lg newsModal">
+            <div class="modal-content">
+                <div class="modal-header">
 
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    News Should open here
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--End of Modal-->
     <div class="wrapper">
         <!-- Sidebar Holder -->
         <nav id="sidebar" class="bg-dark">
@@ -158,12 +175,42 @@
                     <h5 class="font-italic text-secondary">Section</h5>
                 </div>
 
+
                 <!--End Header-->
                 <!--Main Content-->
 
                 <div class="row" id="row1">
                     <!-- Row 1:  -->
                 </div>
+				
+                <div class="row" id="row9">
+					<div class="card border-primary m-2" style="width:18rem">
+						<div class="card-body">
+							<div class="card-text newsHeader">
+								Aqui va el HeadLine
+							</div>
+						</div>
+						
+						<div class="card-footer">
+						<div class="row">
+							<div class="col-3">
+							  <img src="assets/img/CNBC50px.png"  alt="CNBC50px.png">
+							</div>
+						    <div class="col-9">
+								<div class="card-text newsAuthor">
+									Fuente: 
+								</div>
+								<span class="card-text newsAuthor">
+									Autor:
+								</span>
+								
+							</div>
+						</div>
+						</div>
+					</div>
+                </div>
+
+
             </div>
 
             <!--End Content-->
@@ -180,13 +227,8 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"
         integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm"
         crossorigin="anonymous"></script>
-		
-	<!-- Alerts library -->
-	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
     <script type="text/javascript" src="assets/js/sidebar.js"></script>
-	<script type="text/javascript" src="assets/js/showTopNews.js"></script>
-	<script type="text/javascript" src="assets/js/showSearchTopic.js"></script>
 </body>
 
 </html>
