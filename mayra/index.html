@@ -11,14 +11,15 @@
     <!-- Bootstrap CSS CDN -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Quattrocento" rel="stylesheet">
     <!-- Our Custom CSS -->
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
 
 <body>
-    <!--Modal-->
-    <div class="modal fade bd-example-modal-lg" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
-        aria-hidden="true">
+    <!--MODAL-->
+    <div class="modal fade bd-example-modal-lg" id="myModal" tabindex="-1" role="dialog"
+        aria-labelledby="myLargeModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg newsModal">
             <div class="modal-content">
                 <div class="modal-header">
@@ -28,12 +29,12 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    News Should open here
+                    <p class="text-center">Please wait a moment...</p>
                 </div>
             </div>
         </div>
     </div>
-    <!--End of Modal-->
+    <!--End Modal-->
     <div class="wrapper">
         <!-- Sidebar Holder -->
         <nav id="sidebar" class="bg-dark">
@@ -42,7 +43,7 @@
             </div>
 
             <ul class="list-unstyled components">
-                <p>News Site in progress</p>
+                <p class="text-">Select your sources</p>
                 <li class="active">
                     <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false"
                         class="news-sites dropdown-toggle bg-dark">Top News</a>
@@ -50,56 +51,56 @@
                         <li>
                             <div class="form-check">
                                 <input class="form-check-input" type="checkbox" value="" id="newSite1" checked>
-                                <label class="form-check-label" for="defaultCheck1">
-                                    CNBC
+                                <label class="form-check-label" for="CNBC">
+                                    <img src="assets/img/CNBCSide.png" class="sideLogo">
                                 </label>
                             </div>
                         </li>
                         <li>
                             <div class="form-check">
                                 <input class="form-check-input" type="checkbox" value="" id="newSite2" checked>
-                                <label class="form-check-label" for="defaultCheck2">
-                                    Los Angeles Times
+                                <label class="form-check-label" for="LATimes">
+                                    <img src="assets/img/LATimesSide.png" class="sideLogo">
                                 </label>
                             </div>
                         </li>
                         <li>
                             <div class="form-check">
                                 <input class="form-check-input" type="checkbox" value="" id="newSite3" checked>
-                                <label class="form-check-label" for="defaultCheck3">
-                                    The Economist
+                                <label class="form-check-label" for="TheEconomist">
+                                    <img src="assets/img/TheEconomistSide.png" class="sideLogo">
                                 </label>
                             </div>
                         </li>
                         <li>
                             <div class="form-check">
                                 <input class="form-check-input" type="checkbox" value="" id="newSite4" checked>
-                                <label class="form-check-label" for="defaultCheck4">
-                                    The New York Times
+                                <label class="form-check-label" for="NYTimes">
+                                    <img src="assets/img/NYTimesSide.png" class="sideLogo">
                                 </label>
                             </div>
                         </li>
                         <li>
                             <div class="form-check">
                                 <input class="form-check-input" type="checkbox" value="" id="newSite5" checked>
-                                <label class="form-check-label" for="defaultCheck5">
-                                    Fox Sports
+                                <label class="form-check-label" for="FoxSports">
+                                    <img src="assets/img/FoxSportsSide.png" class="sideLogo">
                                 </label>
                             </div>
                         </li>
                         <li>
                             <div class="form-check">
                                 <input class="form-check-input" type="checkbox" value="" id="newSite6" checked>
-                                <label class="form-check-label" for="defaultCheck6">
-                                    FeedBurner
+                                <label class="form-check-label" for="FeedBurner">
+                                    <img src="assets/img/FeedBurnerSide.png" class="sideLogo">
                                 </label>
                             </div>
                         </li>
                         <li>
                             <div class="form-check">
                                 <input class="form-check-input" type="checkbox" value="" id="newSite7" checked>
-                                <label class="form-check-label" for="defaultCheck7">
-                                    Daily Herald
+                                <label class="form-check-label" for="DailyHerald">
+                                    <img src="assets/img/DailyHeraldSide.png" class="sideLogo">
                                 </label>
                             </div>
                         </li>
@@ -161,8 +162,10 @@
                     </button>
 
                     <form class="form-inline my-2 my-lg-0">
-                        <input class="form-control mr-sm-2" type="search" placeholder="Topic to search" id="topicInput" aria-label="Search">
-                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit" id="searchTopic">Search</button>
+                        <input class="form-control mr-sm-2" type="search" placeholder="Topic to search" id="topicInput"
+                            aria-label="Search">
+                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit"
+                            id="searchTopic">Search</button>
                     </form>
                 </div>
             </nav>
@@ -171,10 +174,9 @@
 
             <div class="container-fluid news-container">
                 <div class="jumbotron bg-white text-center">
-                    <h1 class="news-category"> News Category</h1>
-                    <h5 class="font-italic text-secondary">Section</h5>
+                    <h1 class="news-category"> My Headlines</h1>
+                    <h5 class="font-italic text-secondary  newsHowTo"></h5>
                 </div>
-
 
                 <!--End Header-->
                 <!--Main Content-->
@@ -182,8 +184,7 @@
                 <div class="row" id="row1">
                     <!-- Row 1:  -->
                 </div>
-
-
+                <div class="back2top"><a href="#top" class="backTop">[ BACK TO TOP ]</a></div>
             </div>
 
             <!--End Content-->
@@ -201,7 +202,12 @@
         integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm"
         crossorigin="anonymous"></script>
 
+    <!-- Alerts library -->
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
     <script type="text/javascript" src="assets/js/sidebar.js"></script>
+    <script type="text/javascript" src="assets/js/showTopNews.js"></script>
+    <script type="text/javascript" src="assets/js/showSearchTopic.js"></script>
 </body>
 
 </html>

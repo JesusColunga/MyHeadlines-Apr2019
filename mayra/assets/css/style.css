@@ -1,3 +1,7 @@
+html, body {
+    font-family: 'Quattrocento', serif;
+}
+
 p {
     font-size: 1.1rem;
     font-weight: 300;
@@ -10,10 +14,12 @@ a, a:hover, a:focus {
     transition: all 0.3s;
 }
 
-.form-check{
+.form-check {
     margin-left: 2.8rem;
     margin-top: 4px;
     margin-bottom: 4px;
+    padding-top: 4px;
+    padding-bottom: 4px;
 }
 
 .navbar {
@@ -47,7 +53,6 @@ a, a:hover, a:focus {
     perspective: 1500px;
 }
 
-
 #sidebar {
     min-width: 250px;
     max-width: 250px;
@@ -64,12 +69,12 @@ a, a:hover, a:focus {
 
 #sidebar .sidebar-header {
     padding: 20px;
-    background:rgb(20, 19, 19);
+    font-weight: bold;
+    background: rgb(20, 19, 19);
 }
 
 #sidebar ul.components {
     padding: 20px 0;
-    border-bottom: 1px solid #47748b;
 }
 
 #sidebar ul p {
@@ -82,15 +87,15 @@ a, a:hover, a:focus {
     font-size: 1.1em;
     display: block;
 }
+
 #sidebar ul li a:hover {
-    color:rgb(133, 133, 133);
+    color: rgb(133, 133, 133);
 }
 
-#sidebar ul li.active > a, a[aria-expanded="true"] {
+#sidebar ul li.active>a, a[aria-expanded="true"] {
     color: #fff;
     background: rgb(20, 19, 19);
 }
-
 
 a[data-toggle="collapse"] {
     position: relative;
@@ -107,14 +112,15 @@ a[data-toggle="collapse"] {
 ul ul a {
     font-size: 0.9em !important;
     padding-left: 30px !important;
-    background: rgb(20, 19, 19);;
+    background: rgb(20, 19, 19);
+    ;
 }
 
 #content {
     width: 100%;
     padding: 20px;
-    padding-top:0;
-    padding-left:0;
+    padding-top: 0;
+    padding-left: 0;
     padding-right: 0;
     min-height: 100vh;
     transition: all 0.3s;
@@ -140,13 +146,14 @@ ul ul a {
 #sidebarCollapse span:first-of-type {
     transform: rotate(45deg) translate(2px, 2px);
 }
+
 #sidebarCollapse span:nth-of-type(2) {
     opacity: 0;
 }
+
 #sidebarCollapse span:last-of-type {
     transform: rotate(-45deg) translate(1px, -1px);
 }
-
 
 #sidebarCollapse.active span {
     transform: none;
@@ -154,17 +161,17 @@ ul ul a {
     margin: 5px auto;
 }
 
-#topNews{
+#topNews {
     margin-left: 40px;
     margin-top: 10px;
 }
 
-.newsHeader a {
+.newsHeader{
     font-size: 1.05rem;
     font-weight: bold;
 }
 
-.newsHeader a:hover {
+.newsHeader:hover {
     color: #5c5c5c;
     background: #FFFFFF;
     text-decoration: underline;
@@ -172,39 +179,61 @@ ul ul a {
     /*text-shadow: 2px 2px 0 #bcbcbc, 4px 4px 0 #9c9c9c;*/
 }
 
-.newsSection{
+.jumbotron {
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+.newsAuthor, .newsSection {
+    font-size: 0.8rem;
     font-style: italic;
-    color: rgba(150, 150, 150, 1);
+    color: rgb(68, 68, 68, 1);
+}
+
+.newsSource, .newsDate, .newsType {
+    color: rgb(68, 68, 68, 1);
     font-size: 0.8rem;
 }
 
-.jumbotron{
-    padding-top: 20px;
-    padding-bottom: 20px;
+.sideLogo {
+    height: 25px;
 }
 
-.newsAuthor{
-    font-size: 0.7rem;
-    font-style: italic;
+.news-category {
+    font-weight: bolder;
+    color: gray;
+}
+
+.sourceLogo, .sourceData{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.back2top{
     text-align: right;
 }
 
-.newsSource{
-    color: rgba(150, 150, 150, 1);
-    font-size: 0.8rem;
+.backTop{
+    font-size: 0.85rem;
+    text-decoration: none; 
+    color: #999999;
 }
 
 /*For Modal Popup*/
 .modal-dialog {
-    max-height: calc(100vh - 200px);
-    overflow-y: auto;
+    max-height: calc(100vh - 100px);
+    overflow-y: hidden;
 }
 
 iframe{
-    height: calc(100vh - 200px);
+    height: calc(100vh - 180px);
 }
 
 .modal-body{
-    max-height: calc(100vh - 200px);
+    max-height: calc(100vh - 180px);
     height: -webkit-fill-available;
 }
+
+/*Issues linking NYT inside iframe
+https://help.nytimes.com/hc/en-us/articles/115014893268-Linking
+*/

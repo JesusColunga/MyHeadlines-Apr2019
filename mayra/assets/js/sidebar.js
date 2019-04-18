@@ -4,144 +4,71 @@
 var queryURL = "https://content.guardianapis.com";
 var queryParams = "/search?q=";
 var apiKey = "d29910de-c99f-41a2-936b-c52c08761666";
-var q = queryURL + queryParams + "mexico&api-key=" + apiKey;
 
 
 // OBJECTS
 // =====================================================================================
+var sourcesArr = [
+	"",                                  // Index 0 - Empty
+	{
+		image: "CNBC50px.png",            // Index 1 - CNBC
+		url: "https://www.cnbc.com/id/100003114/device/rss/rss.html"
+	},
+	{
+		image: "LATimes50px.png",         // Index 2 - Los Angeles Times
+		url: "https://www.latimes.com/world/mexico-americas/rss2.0.xml"
+	},
+	{
+		image: "TheEconomist50px.png",    // Index 3 - The Economist
+		url: "https://www.economist.com/international/rss.xml"
+	},
+	{
+		image: "NYT50px.png",             // Index 4 - The New York Times
+		url: "http://rss.nytimes.com/services/xml/rss/nyt/HomePage.xml"
+	},
+	{
+		image: "FoxSports50px.png",       // Index 5 - Fox Sports
+		url: "https://api.foxsports.com/v1/rss?partnerKey=zBaFxRyGKCfxBagJG9b8pqLyndmvo7UU"
+	},
+	{
+		image: "FeedBurner50px.png",      // Index 6 - FeedBurner
+		url: "http://feeds2.feedburner.com/time/topstories"
+	},
+	{
+		image: "DailyHerald50px.png",     // Index 7 - Daily Herald
+		url: "https://www.dailyherald.com/rss/feed/?feed=news_top4"
+	},
+	{
+		image: "theguardian50px.png",     // Index 8 - The Guardian
+		url: ""
+	}
+];
 
 
 // FUNCTIONS (Definition)
 // =====================================================================================
-function processCard(indice, data) {
-	//console.log ("data=", data);
-	var card, cardBody, p, img, p2, p3, p4;
 
-	card = $("<div>");
-	card.addClass("card border-success m-2");
-	card.attr("style", "width:18rem");
-
-	cardBody = $("<div>");
-	cardBody.addClass("card-body");
-
-	p = $("<div>");
-	p.addClass("card-text newsHeader");
-	p.html("<b>" +
-		indice +
-		" - " +
-		"</b>" +
-		"<a data-toggle='modal' class='access' href='" +
-		data.webUrl +
-		"'  data-target='#myModal'>" +
-		data.webTitle +
-		"</a>"
-	);
-	cardBody.append(p);
-
-	p2 = $("<div>");
-	p2.addClass("card-text newsSection");
-	p2.html(
-		data.sectionName.toUpperCase()
-	);
-	cardBody.append(p2);
-
-	p3 = $("<div>");
-	p3.addClass("card-text newsType");
-	p3.html("<b>" +
-		"Type: " +
-		"</b>" +
-		data.type
-	);
-	cardBody.append(p3);
-
-	p4 = $("<div>");
-	p4.addClass("card-text newsDate");
-	p4.html("<b>" +
-		"Date: " +
-		"</b>" +
-		data.webPublicationDate
-	);
-	cardBody.append(p4);
-	
-
-	img = $("<img>");
-	img.attr("src", "");
-	img.addClass("card-img-top newsImg");
-	img.attr("alt", "");
-
-	card.append(cardBody, img);
-	$("#row1").append(card);
-};
-
-function muestra(results) {
-	$("#row1").empty ();
+function muestra(results) {            // Search Topic
+	$("#row1").empty();
 	for (ct = 0; ct < results.length; ct++) {
-		processCard(ct + 1, results[ct]);
+		processCardSearchTopic(results[ct]);
 	};
+	$(".back2top").show();
 };
 
 //-----------------------------
-function processCard2(indice, data) {
-	var card, cardBody, p1, p2, p3, p4;
 
-	card = $("<div>");
-	card.addClass("card border-primary m-2");
-	card.attr("style", "width:18rem");
-
-	cardBody = $("<div>");
-	cardBody.addClass("card-body");
-
-	p1 = $("<div>");
-	p1.addClass("card-text newsHeader");
-	p1.html("<b>" +
-		indice +
-		" - " +
-		"</b>" +
-		"<a data-toggle='modal' class='access' href='" +
-		data.url +
-		"' data-target='#myModal'>" +
-		data.headline +
-		"</a>"
-	);
-	cardBody.append(p1);
-
-	p2 = $("<div>");
-	p2.addClass("card-text newsAuthor");
-	p2.html(
-		data.author
-	);
-	cardBody.append(p2);
-
-	p3 = $("<div>");
-	p3.addClass("card-text newsSection2");
-	p3.html(
-		data.section.toUpperCase()
-	);
-	cardBody.append(p3);
-
-	p4 = $("<div>");
-	p4.addClass("card-text newsSource");
-	p4.html("<b>" +
-		"Source: " +
-		"</b>" +
-		data.source
-	);
-	cardBody.append(p4);
-
-	
-
-	card.append(cardBody);
-	$("#row1").append(card);
-};
-
-function showTopNewsResults(results) {
+function showTopNewsResults(results, index) {
 	for (ct = 0; ct < results.length; ct++) {
-		processCard2(ct + 1, results[ct]);
+		processCardTopNews(results[ct], index);
 	};
+	$(".back2top").show();
 };
 /* ==============================================================
    ==========          Top News Code - Start          =========== */
-function medio(rsslink) {
+//function medio(rsslink) {
+function medio(index) {
+	var rsslink = sourcesArr[index].url;
 	var resultados = [];
 
 
@@ -181,7 +108,7 @@ function medio(rsslink) {
 			}
 		}
 
-		showTopNewsResults(resultados);
+		showTopNewsResults(resultados, index);
 	}
 
 	$.ajax({
@@ -190,54 +117,54 @@ function medio(rsslink) {
 	}).then(updatePage);
 
 }
-/* ==============================================================
-   ==========          Top News Code -  End           =========== */
+/* ==========          Top News Code -  End           =========== 
+   ============================================================== */
 
 function selectSources() {           // "Top News" button click
 	if (!$("#newSite1").prop("checked") &&
-	    !$("#newSite2").prop("checked") &&
-	    !$("#newSite3").prop("checked") &&
-	    !$("#newSite4").prop("checked") &&
-	    !$("#newSite5").prop("checked") &&
-	    !$("#newSite6").prop("checked") &&
-	    !$("#newSite7").prop("checked") 
-	   ) { swal ( "Wait!", "Please select at least one News Source", "error" ); }
-    else {
-		$("#row1").empty ();
-		if ($("#newSite1").prop("checked")) {
-			medio("https://www.cnbc.com/id/100003114/device/rss/rss.html");
-		};
-		if ($("#newSite2").prop("checked")) {
-			medio("https://www.latimes.com/world/mexico-americas/rss2.0.xml");
-		};
-		if ($("#newSite3").prop("checked")) {
-			medio("https://www.economist.com/international/rss.xml");
-		};
-		if ($("#newSite4").prop("checked")) {
-			medio("http://rss.nytimes.com/services/xml/rss/nyt/HomePage.xml");
-		};
-		if ($("#newSite5").prop("checked")) {
-			medio("https://api.foxsports.com/v1/rss?partnerKey=zBaFxRyGKCfxBagJG9b8pqLyndmvo7UU");
-		};
-		if ($("#newSite6").prop("checked")) {
-			medio("http://feeds2.feedburner.com/time/topstories");
-		};
-		if ($("#newSite7").prop("checked")) {
-			medio("https://www.dailyherald.com/rss/feed/?feed=news_top4");
+		!$("#newSite2").prop("checked") &&
+		!$("#newSite3").prop("checked") &&
+		!$("#newSite4").prop("checked") &&
+		!$("#newSite5").prop("checked") &&
+		!$("#newSite6").prop("checked") &&
+		!$("#newSite7").prop("checked")
+	) { swal("Wait!", "Please select at least one News Source", "error"); }
+	else {
+		$(".newsHowTo").html("Your Top News");
+		$("#row1").empty();
+		for (ct = 1; ct < 8; ct++) {
+			if ($("#newSite" + ct).prop("checked")) {
+				medio(ct);
+			};
 		};
 	};
 };
 
+function createQuery(topic) {
+	return queryURL +
+		queryParams +
+		topic +
+		"&api-key=" +
+		apiKey;
+};
+
 function processTopic() {            // "Search" button click
-	$.ajax(
-		{
-			url: q,
-			method: "GET"
-		}
-	).done(
-		function (data) {   
-			muestra(data.response.results);
-		});
+	var topic = $("#topicInput").val().trim();
+	if (topic === "") {
+		swal("Wait!", "Please write a topic to search", "error");
+	}
+	else {
+		$(".newsHowTo").html("Your search results for " + topic + ":" );
+		$.ajax(
+			{
+				url: createQuery(topic),
+				method: "GET"
+			}
+		).done(
+			function (data) {
+				muestra(data.response.results);
+			});
+	};
 };
 
 function toggleMenu() {
@@ -247,32 +174,46 @@ function toggleMenu() {
 	});
 };
 
+function startSettings() {
+	$(".news-sections").hide();
+	$(".back2top").hide();
+	$(".news-category").html("My Headlines");
+	$(".newsHowTo").html("Please choose your preferred news sources from the side bar.");
+};
+
+function inModal() {
+	console.log($(this).attr("data-url"));
+	var url = $(this).attr("data-url");
+	$("#myModal").modal();
+
+	console.log("It has to go to:" + url);
+	$(".modal-body").html('<iframe width="100%" height="100%" frameborder="0" scrolling="yes" allowtransparency="true" src="' + url + '"></iframe>');
+
+}
+
 // FUNCTION CALLS (Execution)
 // =====================================================================================
 $(document).ready(function () {
 	toggleMenu();
-	$(".news-sections").hide();
-	
+	startSettings();
+
 	$("#topNews").on("click",
 		function () {
-			selectSources();           // "Top News" button click
-			
+			selectSources();                     // "Top News" button click
 		}
 	);
 
 	$("#searchTopic").on("click",
 		function (event) {
 			event.preventDefault();
-			processTopic();            // "Search" button click
+			processTopic();                      // "Search" button click
 		}
 	);
-//To open URL on iframe
-//Cannot make this work 
-	$('a.access').on('click', function(e) {
-		e.preventDefault();
-		var url = $(this).attr('href');
-		console.log(url);
-		$(".modal-body").html('<iframe width="100%" height="100%" frameborder="0" scrolling="yes" allowtransparency="true" src="'+url+'"></iframe>');
-});
-	
+
+	//------------------------------------------
+$("#row1").on("click", ".border-primary", inModal);  // "Top News" card click
+$("#row1").on("click", ".border-success",  inModal); // "Search Topic" card click
 }); // document.ready
+
+
+
