@@ -185,8 +185,6 @@ function inModal() {
 	console.log($(this).attr("data-url"));
 	var url = $(this).attr("data-url");
 	$("#myModal").modal();
-
-	console.log("It has to go to:" + url);
 	$(".modal-body").html('<iframe width="100%" height="100%" frameborder="0" scrolling="yes" allowtransparency="true" src="' + url + '"></iframe>');
 
 }
@@ -196,9 +194,9 @@ function inModal() {
 $(document).ready(function () {
 	toggleMenu();
 	startSettings();
-
 	$("#topNews").on("click",
 		function () {
+			$(".headline-head").show();
 			selectSources();                     // "Top News" button click
 		}
 	);
@@ -206,6 +204,7 @@ $(document).ready(function () {
 	$("#searchTopic").on("click",
 		function (event) {
 			event.preventDefault();
+			$(".headline-head").show();
 			processTopic();                      // "Search" button click
 		}
 	);
