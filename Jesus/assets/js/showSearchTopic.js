@@ -35,7 +35,7 @@ function processSTCrdFtRwCol2Date (data) {
 
 function processSTCrdFtRwCol2 (data) {
 	var col2 = $("<div>");
-	col2.addClass ("col-9");
+	col2.addClass ("col-9 sourceInfo");
 	if (data.author !== "") {
 		col2.append ( processSTCrdFtRwCol2Date (data) );
 	}
@@ -56,14 +56,14 @@ function processSTCrdFtRwCol1Image (data) {
 
 function processSTCrdFtRwCol1 (data) {
 	var col1 = $("<div>");
-	col1.addClass ("col-3");
+	col1.addClass ("col-3 sourceLogo");
 	col1.append ( processSTCrdFtRwCol1Image (data) );
 	return col1;
 };
 
 function processSTCardFtRow (data) {
 	var row = $("<div>");
-	row.addClass ("row");
+	row.addClass ("row sourceData");
 	row.append ( processSTCrdFtRwCol1 (data), 
 				 processSTCrdFtRwCol2 (data)
 	           );

@@ -6,7 +6,7 @@ function processCrdFtRwCol2Section (data) {
 	p4.html ("<b>" +
 	 		 "Section: " +
 	 		 "</b>" +
-			 data.section
+			 data.section.replace(";amp;", " ")
 		    );
 	return p4;
 };
@@ -35,10 +35,10 @@ function processCrdFtRwCol2Author (data) {
 
 function processCrdFtRwCol2 (data) {
 	var col2 = $("<div>");
-	col2.addClass ("col-9");
-	if (data.author !== "") {
+	col2.addClass ("col-9 sourceInfo");
+	/*if (data.author !== "") {
 		col2.append ( processCrdFtRwCol2Author (data) );
-	}
+	}*/
 	if (data.source !== "") {
 		col2.append ( processCrdFtRwCol2Source (data) );
 	}
@@ -56,14 +56,14 @@ function processCrdFtRwCol1Image (data, index) {
 
 function processCrdFtRwCol1 (data, index) {
 	var col1 = $("<div>");
-	col1.addClass ("col-3");
+	col1.addClass ("col-3 sourceLogo");
 	col1.append ( processCrdFtRwCol1Image (data, index) );
 	return col1;
 };
 
 function processCardFtRow (data, index) {
 	var row = $("<div>");
-	row.addClass ("row");
+	row.addClass ("row sourceData");
 	row.append ( processCrdFtRwCol1 (data, index), 
 				 processCrdFtRwCol2 (data)
 	           );
