@@ -158,10 +158,10 @@ function processTopic() {            // "Search" button click
 		swal("Wait!", "Please write a topic to search", "error");
 	}
 	else 
-	if ( !processCheckContent (topic) ) {
+	/*if ( !processCheckContent (topic) ) {
 		swal("Wait!", "Please type letters or numbers for your topic", "error");
 	}
-	else {
+	else*/ {
 		topic = DOMPurify.sanitize(topic);
 		$(".newsHowTo").html("Your search results for " + topic + ":" );
 		$.ajax(

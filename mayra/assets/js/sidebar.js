@@ -148,12 +148,21 @@ function createQuery(topic) {
 		apiKey;
 };
 
+function processCheckContent (topic) {
+	return topic.match (/^[a-zA-Z0-9 ]+$/)
+};
+
 function processTopic() {            // "Search" button click
 	var topic = $("#topicInput").val().trim();
 	if (topic === "") {
 		swal("Wait!", "Please write a topic to search", "error");
 	}
+	else 
+	if ( !processCheckContent (topic) ) {
+		swal("Wait!", "Please type letters or numbers for your topic", "error");
+	}
 	else {
+		topic = DOMPurify.sanitize(topic);
 		$(".newsHowTo").html("Your search results for " + topic + ":" );
 		$.ajax(
 			{
@@ -181,12 +190,19 @@ function startSettings() {
 	$(".newsHowTo").html("Please choose your preferred news sources from the side bar.");
 };
 
-function inModal() {
-	console.log($(this).attr("data-url"));
-	var url = $(this).attr("data-url");
-	$("#myModal").modal();
-	$(".modal-body").html('<iframe width="100%" height="100%" frameborder="0" scrolling="yes" allowtransparency="true" src="' + url + '"></iframe>');
+function openInNewTab(url) {
+	var win = window.open(url, '_blank');
+	win.focus();
+}
 
+function inModal() {
+	var url = $(this).attr("data-url");
+	if (url.includes("nytimes") || url.includes("theguardian")) {
+		openInNewTab(url);
+		} else {
+		$("#myModal").modal();
+		$(".modal-body").html('<iframe width="100%" height="100%" frameborder="0" scrolling="yes" allowtransparency="true" src="' + url + '"></iframe>');
+	}
 }
 
 // FUNCTION CALLS (Execution)
@@ -194,6 +210,7 @@ function inModal() {
 $(document).ready(function () {
 	toggleMenu();
 	startSettings();
+	
 	$("#topNews").on("click",
 		function () {
 			$(".headline-head").show();
@@ -209,9 +226,8 @@ $(document).ready(function () {
 		}
 	);
 
-	//------------------------------------------
-$("#row1").on("click", ".border-primary", inModal);  // "Top News" card click
-$("#row1").on("click", ".border-success",  inModal); // "Search Topic" card click
+	$("#row1").on("click", ".border-primary", inModal);  // "Top News" card click
+	$("#row1").on("click", ".border-success",  inModal); // "Search Topic" card click
 }); // document.ready
 
 
