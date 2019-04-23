@@ -30,7 +30,7 @@ a, a:hover, a:focus {
 .navbar {
     font-family:  'Ubuntu Condensed', consolas, sans-serif;
     padding: 15px 10px;
-    /*background: rgb(173, 214, 255,0.3); AGREGAR COLOR A LAS NAV BARS*/
+    /*background: rgb(173, 214, 255,0.3);*/
     border: none;
     border-radius: 0;
     margin-bottom: 15px;
