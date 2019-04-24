@@ -51,6 +51,7 @@ function processCrdFtRwCol2 (data) {
 function processCrdFtRwCol1Image (data, index) {
 	var img = $("<img>");
 	img.attr ( "src", "assets/img/" + sourcesArr [index].image );
+	img.attr ( "alt", sourcesArr [index].alt );
 	return img;
 };
 

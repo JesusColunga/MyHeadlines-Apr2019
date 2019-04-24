@@ -9,38 +9,46 @@ var apiKey = "d29910de-c99f-41a2-936b-c52c08761666";
 // OBJECTS
 // =====================================================================================
 var sourcesArr = [
-	"",                                  // Index 0 - Empty
+	"",                                   // Index 0 - Empty
 	{
 		image: "CNBC50px.png",            // Index 1 - CNBC
-		url: "https://www.cnbc.com/id/100003114/device/rss/rss.html"
+		url:   "https://www.cnbc.com/id/100003114/device/rss/rss.html",
+		alt:   "CNBC"
 	},
 	{
 		image: "LATimes50px.png",         // Index 2 - Los Angeles Times
-		url: "https://www.latimes.com/world/mexico-americas/rss2.0.xml"
+		url:   "https://www.latimes.com/world/mexico-americas/rss2.0.xml",
+		alt:   "LATimes"
 	},
 	{
 		image: "TheEconomist50px.png",    // Index 3 - The Economist
-		url: "https://www.economist.com/international/rss.xml"
+		url:   "https://www.economist.com/international/rss.xml",
+		alt:   "The Economist"
 	},
 	{
 		image: "NYT50px.png",             // Index 4 - The New York Times
-		url: "http://rss.nytimes.com/services/xml/rss/nyt/HomePage.xml"
+		url:   "http://rss.nytimes.com/services/xml/rss/nyt/HomePage.xml",
+		alt:   "NYTimes"
 	},
 	{
 		image: "FoxSports50px.png",       // Index 5 - Fox Sports
-		url: "https://api.foxsports.com/v1/rss?partnerKey=zBaFxRyGKCfxBagJG9b8pqLyndmvo7UU"
+		url:   "https://api.foxsports.com/v1/rss?partnerKey=zBaFxRyGKCfxBagJG9b8pqLyndmvo7UU",
+		alt:   "Fox Sports"
 	},
 	{
 		image: "FeedBurner50px.png",      // Index 6 - FeedBurner
-		url: "http://feeds2.feedburner.com/time/topstories"
+		url:   "http://feeds2.feedburner.com/time/topstories",
+		alt:   "FeedBurner"
 	},
 	{
 		image: "DailyHerald50px.png",     // Index 7 - Daily Herald
-		url: "https://www.dailyherald.com/rss/feed/?feed=news_top4"
+		url:   "https://www.dailyherald.com/rss/feed/?feed=news_top4",
+		alt:   "Daily Herald"
 	},
 	{
 		image: "theguardian50px.png",     // Index 8 - The Guardian
-		url: ""
+		url:   "",
+		alt:   "The Guardian"
 	}
 ];
 
