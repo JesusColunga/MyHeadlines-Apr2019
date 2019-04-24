@@ -130,6 +130,7 @@ function selectSources() {           // "Top News" button click
 		!$("#newSite7").prop("checked")
 	) { swal("Wait!", "Please select at least one News Source", "error"); }
 	else {
+		StoreUserSources ();
 		$(".newsHowTo").html("Your Top News");
 		$("#row1").empty();
 		for (ct = 1; ct < 8; ct++) {
@@ -158,10 +159,10 @@ function processTopic() {            // "Search" button click
 		swal("Wait!", "Please write a topic to search", "error");
 	}
 	else 
-	/*if ( !processCheckContent (topic) ) {
+	if ( !processCheckContent (topic) ) {
 		swal("Wait!", "Please type letters or numbers for your topic", "error");
 	}
-	else*/ {
+	else {
 		topic = DOMPurify.sanitize(topic);
 		$(".newsHowTo").html("Your search results for " + topic + ":" );
 		$.ajax(
@@ -190,19 +191,56 @@ function startSettings() {
 	$(".newsHowTo").html("Please choose your preferred news sources from the side bar.");
 };
 
-function inModal() {
-	console.log($(this).attr("data-url"));
-	var url = $(this).attr("data-url");
-	$("#myModal").modal();
-	$(".modal-body").html('<iframe width="100%" height="100%" frameborder="0" scrolling="yes" allowtransparency="true" src="' + url + '"></iframe>');
-
+function openInNewTab(url) {
+	var win = window.open(url, '_blank');
+	win.focus();
 }
+
+function inModal() {
+	var url = $(this).attr("data-url");
+	if (url.includes("nytimes") || url.includes("theguardian")) {
+		openInNewTab(url);
+		} else {
+		$("#myModal").modal();
+		$(".modal-body").html('<iframe width="100%" height="100%" frameborder="0" scrolling="yes" allowtransparency="true" src="' + url + '"></iframe>');
+	}
+}
+
+function StoreUserSources () {
+	var userSources = {
+		newSite1: $("#newSite1").prop("checked"),
+		newSite2: $("#newSite2").prop("checked"),
+		newSite3: $("#newSite3").prop("checked"),
+		newSite4: $("#newSite4").prop("checked"),
+		newSite5: $("#newSite5").prop("checked"),
+		newSite6: $("#newSite6").prop("checked"),
+		newSite7: $("#newSite7").prop("checked")
+	};
+	localStorage.clear();
+	localStorage.setItem("userSources", JSON.stringify(userSources) );
+};
+
+function RetrieveUserSources () {
+	var userSources = JSON.parse( localStorage.getItem("userSources") );
+	if (userSources === null) {
+		for (ct = 1; ct <= 7; ct ++) {
+			$("#newSite" + ct).prop("checked");
+		};
+	} else {
+		for (ct = 1; ct <= 7; ct ++) {
+			$("#newSite" + ct).attr("checked", userSources ["newSite" + ct]);
+		};
+	};
+};
+
 
 // FUNCTION CALLS (Execution)
 // =====================================================================================
 $(document).ready(function () {
 	toggleMenu();
 	startSettings();
+	RetrieveUserSources ();
+	
 	$("#topNews").on("click",
 		function () {
 			$(".headline-head").show();
