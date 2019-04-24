@@ -252,7 +252,10 @@ $(document).ready(function () {
 	$("#topNews").on("click",
 		function () {
 			$(".headline-head").show();
-			selectSources();                     // "Top News" button click
+			selectSources();    
+			$('#sidebar').toggleClass('active');
+			$('#sidebarCollapse').toggleClass('active');                  // "Top News" button click
+			
 		}
 	);
 
