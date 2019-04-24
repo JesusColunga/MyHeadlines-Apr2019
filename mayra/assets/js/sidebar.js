@@ -130,6 +130,7 @@ function selectSources() {           // "Top News" button click
 		!$("#newSite7").prop("checked")
 	) { swal("Wait!", "Please select at least one News Source", "error"); }
 	else {
+		StoreUserSources ();
 		$(".newsHowTo").html("Your Top News");
 		$("#row1").empty();
 		for (ct = 1; ct < 8; ct++) {
@@ -205,11 +206,40 @@ function inModal() {
 	}
 }
 
+function StoreUserSources () {
+	var userSources = {
+		newSite1: $("#newSite1").prop("checked"),
+		newSite2: $("#newSite2").prop("checked"),
+		newSite3: $("#newSite3").prop("checked"),
+		newSite4: $("#newSite4").prop("checked"),
+		newSite5: $("#newSite5").prop("checked"),
+		newSite6: $("#newSite6").prop("checked"),
+		newSite7: $("#newSite7").prop("checked")
+	};
+	localStorage.clear();
+	localStorage.setItem("userSources", JSON.stringify(userSources) );
+};
+
+function RetrieveUserSources () {
+	var userSources = JSON.parse( localStorage.getItem("userSources") );
+	if (userSources === null) {
+		for (ct = 1; ct <= 7; ct ++) {
+			$("#newSite" + ct).prop("checked");
+		};
+	} else {
+		for (ct = 1; ct <= 7; ct ++) {
+			$("#newSite" + ct).attr("checked", userSources ["newSite" + ct]);
+		};
+	};
+};
+
+
 // FUNCTION CALLS (Execution)
 // =====================================================================================
 $(document).ready(function () {
 	toggleMenu();
 	startSettings();
+	RetrieveUserSources ();
 	
 	$("#topNews").on("click",
 		function () {
