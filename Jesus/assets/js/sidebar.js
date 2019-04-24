@@ -255,6 +255,7 @@ $(document).ready(function () {
 			selectSources();    
 			$('#sidebar').toggleClass('active');
 			$('#sidebarCollapse').toggleClass('active');                  // "Top News" button click
+			
 		}
 	);
 
