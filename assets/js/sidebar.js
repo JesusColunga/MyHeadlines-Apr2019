@@ -232,7 +232,7 @@ function RetrieveUserSources () {
 	var userSources = JSON.parse( localStorage.getItem("userSources") );
 	if (userSources === null) {
 		for (ct = 1; ct <= 7; ct ++) {
-			$("#newSite" + ct).prop("checked");
+			$("#newSite" + ct).attr("checked", true);
 		};
 	} else {
 		for (ct = 1; ct <= 7; ct ++) {
