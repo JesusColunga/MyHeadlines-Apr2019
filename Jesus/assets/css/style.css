@@ -62,7 +62,6 @@ a, a:hover, a:focus {
 #sidebar {
     min-width: 250px;
     max-width: 250px;
-    height:100vh;
     font-family:  'Ubuntu Condensed', consolas, sans-serif;
     background: rgb(173, 214, 255,0.3);
     color: rgb(201, 201, 201);
@@ -290,7 +289,6 @@ iframe {
     #sidebar {
         min-width: 170px;
         max-width: 170px;
-        height:100vh;
     }
 
     #sidebar.active {
